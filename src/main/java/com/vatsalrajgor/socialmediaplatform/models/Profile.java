@@ -1,5 +1,6 @@
 package com.vatsalrajgor.socialmediaplatform.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -40,6 +41,7 @@ public class Profile {
     private String bio;
 
     @OneToOne(mappedBy = "profile")
+    @JsonIgnore
     private User user;
 
     @CreationTimestamp

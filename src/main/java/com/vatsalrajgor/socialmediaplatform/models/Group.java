@@ -1,4 +1,5 @@
 package com.vatsalrajgor.socialmediaplatform.models;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -33,6 +34,11 @@ public class Group {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "groups")
-    private Set<User> members = new HashSet<>();
+    @ManyToMany(mappedBy = "groups")
+    @JsonIgnore
+    private Set<User> users = new HashSet<>();
+
+    public Group(String name) {
+        this.name = name;
+    }
 }
